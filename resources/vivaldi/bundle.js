@@ -49124,10 +49124,12 @@ webpackJsonp([1], [, , , , , , function(e, t, n) {
                 }, a.handlePanelButtonClick = function(e, t) {
                     1 === t.button || 0 === t.button && !0 === t.altKey && !1 === t.ctrlKey && !1 === t.shiftKey && !1 === t.metaKey ? a.isWebPanel(e) ? Gs.a.openInTab(e, !1, !0) : e === Hs.a.getBookmarkName() ? js.a.showBookmarks() : e === Hs.a.getHistoryName() && js.a.showHistory() : a.setSelected(e)
                 }, a.handleSliderDown = function() {
+                    a.props.resizing = !0;
                     a.setState({
                         resizing: !0
                     }), a.freezeWebview()
                 }, a.handleSliderUp = function() {
+                    a.props.resizing = !1;
                     a.setState({
                         resizing: !1
                     }), a.thawWebview()
@@ -49141,14 +49143,25 @@ webpackJsonp([1], [, , , , , , function(e, t, n) {
                         t.classList.add("anchor-tabs");
                     }
                     if ("right" === a.props.position) {
-                        t.classList.add("justify-end")
+                        if (a.props.resizing)
+                            t.classList.add("justify-end");
+                        else {
+                            t.classList.add("justify-space");
+                            var leftPos = 0;
+                            if ("left" === a.props.vivaldiSettings.TAB_POSITION) {
+                                var tabContainer = document.getElementById("tabs-container");
+                                leftPos = tabContainer.clientWidth;
+                            }
+                            e.style.setProperty("left", leftPos+"px");
+                        }
                     }
                 }, a.thawWebview = function() {
                     document.getElementById("webview-container").style.setProperty("flex", "1 1 100%");
-                    if ( "right" === a.props.vivaldiSettings.TAB_POSITION
+                    if ("right" === a.props.vivaldiSettings.TAB_POSITION
                         || "left" === a.props.vivaldiSettings.TAB_POSITION
                         || "right" === a.props.position) {
-                        document.querySelector("#main .inner").classList.remove("anchor-tabs", "justify-end");
+                        document.querySelector("#main .inner").classList.remove("anchor-tabs", "justify-end", "justify-space");
+                        document.getElementById("webview-container").style.setProperty("left", "");
                     }
                 }, a.canRenderInWindow = function(e) {
                     return !!a.state.isMailWindow || e !== Hs.a.getMailName() && e !== Hs.a.getContactName()

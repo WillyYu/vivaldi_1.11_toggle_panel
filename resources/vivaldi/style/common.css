@@ -3769,6 +3769,9 @@ a:-webkit-any-link {
 #main > .inner.justify-end {
   justify-content: flex-end;
 }
+#main > .inner.justify-space {
+  justify-content: space-between;
+}
 #header {
   min-height: 25px;
   position: relative;
