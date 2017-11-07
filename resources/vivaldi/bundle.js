@@ -49146,7 +49146,7 @@ webpackJsonp([1], [, , , , , , function(e, t, n) {
                         if (a.props.resizing)
                             t.classList.add("justify-end");
                         else {
-                            t.classList.add("justify-space");
+                            t.classList.add("justify-space", "anchor-panel");
                             var leftPos = 0;
                             if ("left" === a.props.vivaldiSettings.TAB_POSITION) {
                                 var tabContainer = document.getElementById("tabs-container");
@@ -49160,7 +49160,7 @@ webpackJsonp([1], [, , , , , , function(e, t, n) {
                     if ("right" === a.props.vivaldiSettings.TAB_POSITION
                         || "left" === a.props.vivaldiSettings.TAB_POSITION
                         || "right" === a.props.position) {
-                        document.querySelector("#main .inner").classList.remove("anchor-tabs", "justify-end", "justify-space");
+                        document.querySelector("#main .inner").classList.remove("anchor-tabs", "justify-end", "justify-space", "anchor-panel");
                         document.getElementById("webview-container").style.setProperty("left", "");
                     }
                 }, a.canRenderInWindow = function(e) {
